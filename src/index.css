@@ -123,12 +123,6 @@ h2 {
 
 .unanswered,
 .answered {
-  display: none;
-}
-
-.unanswered.active_unanswered,
-.answered.active_answered {
-  display: block;
 }
 
 /* NAVIGATION */
@@ -159,6 +153,27 @@ h2 {
 
 .navigation a.active:hover {
   border-color: transparent;
+}
+
+.navigation img {
+  margin-left: auto;
+}
+
+/* DASHBOARD */
+.dashboard-content {
+  padding: 40px;
+  border: solid 1px var(--main-palletcolor-3);
+}
+
+.questions {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.questions li {
+  min-width: calc(50% - 20px);
+  flex-grow: 1;
+  margin: 10px;
 }
 
 /* SEMANTIC UI OVERRIDES */

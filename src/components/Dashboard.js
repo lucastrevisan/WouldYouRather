@@ -20,7 +20,7 @@ class DashBoard extends Component {
     const { unansweredQuestions, answeredQuestions } = this.props;
     const { active } = this.state;
     return (
-      <Fragment>
+      <div className="dashboard-content">
         <ul className="tabs">
           <li
             className={active === 'unanswered' ? 'active' : ''}
@@ -40,22 +40,26 @@ class DashBoard extends Component {
           </li>
         </ul>
 
-        <ul className={`unanswered active_${active}`}>
-          {unansweredQuestions.map(qid => (
-            <li key={qid}>
-              <Question id={qid} />
-            </li>
-          ))}
-        </ul>
+        {active === 'unanswered' && (
+          <ul className="questions unanswered">
+            {unansweredQuestions.map(qid => (
+              <li key={qid}>
+                <Question id={qid} />
+              </li>
+            ))}
+          </ul>
+        )}
 
-        <ul className={`answered active_${active}`}>
-          {answeredQuestions.map(qid => (
-            <li key={qid}>
-              <Question id={qid} />
-            </li>
-          ))}
-        </ul>
-      </Fragment>
+        {active === 'answered' && (
+          <ul className="questions answered">
+            {answeredQuestions.map(qid => (
+              <li key={qid}>
+                <Question id={qid} />
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     );
   }
 }
