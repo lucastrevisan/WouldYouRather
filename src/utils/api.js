@@ -1,14 +1,11 @@
-import {
-  _getUsers,
-  _getQuestions,
-} from './_DATA.js'
+import { _getUsers, _getQuestions } from './_DATA.js';
 
-export function getInitialData () {
-  return Promise.all([
-    _getUsers(),
-    _getQuestions(),
-  ]).then(([users, questions]) => ({
+export async function getInitialData() {
+  const users = await _getUsers();
+  const questions = await _getQuestions();
+
+  return {
     users,
-    questions,
-  }))
+    questions
+  };
 }

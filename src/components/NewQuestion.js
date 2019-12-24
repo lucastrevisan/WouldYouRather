@@ -11,22 +11,14 @@ class NewQuestion extends Component {
     redirect: false
   };
 
-  handleOptionOneChange = event => {
+  handleChange = (event, option) => {
     event.preventDefault();
     this.setState({
-      optionOne: event.target.value
+      [option]: event.target.value
     });
   };
 
-  handleOptionTwoChange = event => {
-    event.preventDefault();
-    this.setState({
-      optionTwo: event.target.value
-    });
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
+  handleSubmit = () => {
     const { optionOne, optionTwo } = this.state;
     this.props.addQuestion(optionOne, optionTwo);
     this.setState({ redirect: true });
@@ -38,29 +30,42 @@ class NewQuestion extends Component {
     }
     const { optionOne, optionTwo } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <div className="questionCard selected">
         <p>Would You Rather</p>
-
-        <label for="optionOne">Option One</label>
-        <input
-          type="text"
-          name="optionOne"
-          value={optionOne}
-          onChange={this.handleOptionOneChange}
-          placeholder="Option One"
-        />
-
-        <label for="optionTwo">Option Two</label>
-        <input
-          type="text"
-          name="optionTwo"
-          value={optionTwo}
-          onChange={this.handleOptionTwoChange}
-          placeholder="Option Two"
-        />
-
-        <button disabled={optionOne === '' || optionTwo === ''}>Submit</button>
-      </form>
+        <div className="avatarQuestion">
+          <ul className="alone">
+            <li>
+              <input
+                type="text"
+                name="optionOne"
+                className="questionToAsk"
+                value={optionOne}
+                onChange={e => this.handleChange(e, 'optionOne')}
+                placeholder="Option One"
+              />
+            </li>
+            <li>OR</li>
+            <li>
+              <input
+                type="text"
+                name="optionTwo"
+                className="questionToAsk"
+                value={optionTwo}
+                onChange={e => this.handleChange(e, 'optionTwo')}
+                placeholder="Option Two"
+              />
+            </li>
+            <li>
+              <button
+                onClick={this.handleSubmit}
+                disabled={optionOne === '' || optionTwo === ''}
+              >
+                Submit
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
     );
   }
 }
