@@ -14,9 +14,15 @@ class QuestionDetails extends Component {
     });
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
+  handleSubmit = () => {
     this.props.saveQuestionAnswer(this.state.selectedOption);
+  };
+
+  checkSelection = (answer, value) => {
+    if (answer) {
+      return answer === value;
+    }
+    return this.state.selectedOption === value;
   };
 
   render() {
@@ -35,55 +41,61 @@ class QuestionDetails extends Component {
         <p>{questionAuthor.name} ask:</p>
         <div className="avatarQuestion">
           <img src={questionAuthor.avatarURL} alt="avatar" />
-          {answer ? (
-            <form>
-              <p>Would You Rather</p>
-              <label check>
-                <input type="radio" checked={answer === 'optionOne'} readOnly />
-                {question.optionOne.text}
-              </label>
-
-              <label check>
-                <input type="radio" checked={answer === 'optionTwo'} readOnly />
-                {question.optionTwo.text}
-              </label>
-
-              <div className="progress">
-                <div
-                  className="progress-one"
-                  style={{ width: `${percOne}%` }}
-                >{`${percOne}%`}</div>
-                <div
-                  className="progress-two"
-                  style={{ width: `${percTwo}%` }}
-                >{`${percTwo}%`}</div>
-              </div>
-              <div className="total">Total number of votes: {total}</div>
-            </form>
-          ) : (
-            <form onSubmit={this.handleSubmit}>
+          <ul>
+            <p>Would You Rather</p>
+            <li className={answer && 'opt1'}>
               <label>
                 <input
                   type="radio"
                   name="radio1"
                   value="optionOne"
                   onChange={this.radioSelected}
+                  checked={this.checkSelection(answer, 'optionOne')}
+                  readOnly={answer !== undefined}
                 />
                 {question.optionOne.text}
               </label>
-
+            </li>
+            <li className={answer && 'opt2'}>
               <label>
                 <input
                   type="radio"
                   name="radio1"
                   value="optionTwo"
                   onChange={this.radioSelected}
+                  checked={this.checkSelection(answer, 'optionTwo')}
+                  readOnly={answer !== undefined}
                 />
                 {question.optionTwo.text}
               </label>
-              <button disabled={selectedOption === ''}>Submit</button>
-            </form>
-          )}
+            </li>
+            {answer ? (
+              <li>
+                <div className="progress">
+                  <div
+                    className="progress-one"
+                    style={{ width: `${percOne}%` }}
+                  >{`${percOne}%`}</div>
+                  <div
+                    className="progress-two"
+                    style={{ width: `${percTwo}%` }}
+                  >{`${percTwo}%`}</div>
+                </div>
+                <div className="total">
+                  Total number of votes: <b>{total}</b>
+                </div>
+              </li>
+            ) : (
+              <li>
+                <button
+                  onClick={this.handleSubmit}
+                  disabled={selectedOption === ''}
+                >
+                  Submit
+                </button>
+              </li>
+            )}
+          </ul>
         </div>
       </div>
     );
