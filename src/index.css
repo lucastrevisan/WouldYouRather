@@ -310,6 +310,26 @@ button {
   padding: 10px;
 }
 
+/* LEADERBOARD */
+table {
+  width: 500px;
+  margin: 0 auto;
+  background: var(--main-palletcolor-3);
+}
+
+thead th {
+  background: var(--main-palletcolor-5);
+  padding: 5px;
+  vertical-align: middle;
+  color: var(--main-palletcolor-3);
+  font-weight: normal;
+}
+
+tbody td {
+  text-align: center;
+  vertical-align: middle;
+}
+
 /* SEMANTIC UI OVERRIDES */
 .ui.selection.dropdown {
   padding: 20px;

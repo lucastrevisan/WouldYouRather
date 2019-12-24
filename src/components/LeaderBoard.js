@@ -1,40 +1,41 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 function Leaderboard(props) {
   const { users } = props;
   return (
-    <Fragment>
-      <table>
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>Profile</th>
-            <th>User</th>
-            <th>Questions Asked</th>
-            <th>Questions Answered</th>
+    <table>
+      <thead>
+        <tr>
+          <th rowSpan="2">Rank</th>
+          <th rowSpan="2">Avatar</th>
+          <th rowSpan="2">User</th>
+          <th colSpan="2">Questions</th>
+        </tr>
+        <tr>
+          <th>Asked</th>
+          <th>Answered</th>
+        </tr>
+      </thead>
+      <tbody>
+        {users.map((user, index) => (
+          <tr key={user.id}>
+            <td>{index + 1}</td>
+            <td>
+              <img
+                src={user.avatarURL}
+                className="avatar"
+                alt={`${user.name}`}
+              />
+            </td>
+            <td>{user.name}</td>
+            <td>{user.questions.length}</td>
+            <td>{Object.keys(user.answers).length}</td>
           </tr>
-        </thead>
-        <tbody>
-          {users.map((user, index) => (
-            <tr key={user.id}>
-              <td>{index + 1}</td>
-              <td>
-                <img
-                  src={user.avatarURL}
-                  className="avatar"
-                  alt={`Avatar of ${user.name}`}
-                />
-              </td>
-              <td>{user.name}</td>
-              <td>{user.questions.length}</td>
-              <td>{Object.keys(user.answers).length}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </Fragment>
+        ))}
+      </tbody>
+    </table>
   );
 }
 
