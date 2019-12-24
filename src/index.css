@@ -142,6 +142,13 @@ button {
   margin-left: auto;
 }
 
+.navigation span {
+  display: inline-flex;
+  align-items: center;
+  font-weight: bold;
+  color: var(--main-palletcolor-6);
+}
+
 /* DASHBOARD */
 .dashboard-content {
   padding: 0;
@@ -328,6 +335,7 @@ thead th {
 tbody td {
   text-align: center;
   vertical-align: middle;
+  background: #fff;
 }
 
 /* SEMANTIC UI OVERRIDES */
