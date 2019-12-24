@@ -1,10 +1,10 @@
-import { Link, withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import React, { PureComponent, Fragment } from 'react';
+import React, { Component } from 'react';
 import User from './User';
 
-class NavBar extends PureComponent {
+class NavBar extends Component {
   state = {
     isOpen: false
   };
@@ -19,14 +19,20 @@ class NavBar extends PureComponent {
     const { authedUser } = this.props;
 
     return (
-      <nav>
-        <Link to="/">Would You Rather</Link>
-
-        <Link to="/add">New Question</Link>
-        <Link to="/leaderboard">Dashboard</Link>
-        <Link to="/logout">Logout</Link>
-
+      <nav className="navigation">
+        <NavLink exact activeClassName="active" to="/">
+          Home
+        </NavLink>
+        <NavLink exact to="/add">
+          New Question
+        </NavLink>
+        <NavLink exact to="/leaderboard">
+          Dashboard
+        </NavLink>
         <User id={authedUser} />
+        <NavLink exact to="/logout">
+          Logout
+        </NavLink>
       </nav>
     );
   }
