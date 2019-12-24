@@ -1,0 +1,152 @@
+:root {
+  --main-palletcolor-1: #61788c;
+  --main-palletcolor-2: #8c867b;
+  --main-palletcolor-3: #bfbdb8;
+  --main-palletcolor-4: #402a1e;
+  --main-palletcolor-5: #a64941;
+  --main-palletcolor-6: #1d2126;
+}
+
+h1 {
+  font-size: 1.5em !important;
+}
+
+h2 {
+  font-size: 1em !important;
+}
+
+#root {
+  background-color: var(--main-palletcolor-2) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+@keyframes appearIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.main-container,
+.login-container {
+  opacity: 0;
+  padding: 20px;
+  animation: appearIn 0.2s linear forwards;
+}
+
+.main-container {
+  height: 100vh;
+  flex-grow: 1;
+}
+
+.welcome {
+  color: var(--main-palletcolor-5);
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.login-container {
+  width: 460px;
+  height: 50vh;
+  background: var(--main-palletcolor-3);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-container form {
+  flex-grow: 1;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.submitUser {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background: var(--main-palletcolor-2);
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.avatar {
+  height: 35px;
+  border-radius: 25px;
+  margin: 10px;
+}
+
+.progress {
+  margin-top: 25px;
+  width: 100%;
+  background: #000;
+  height: 25px;
+  display: inline-flex;
+  color: #e8f1e8;
+  font-size: 20px;
+}
+
+.progress-one {
+  height: 100%;
+  background: #808cfa;
+  text-align: center;
+}
+
+.progress-two {
+  height: 100%;
+  background: #fa8080;
+  text-align: center;
+}
+
+.total {
+  margin-top: 25px;
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+}
+
+.optionSelected {
+  font-weight: bold;
+  color: blueviolet;
+}
+
+.unanswered,
+.answered {
+  display: none;
+}
+
+.unanswered.active_unanswered,
+.answered.active_answered {
+  display: block;
+}
+
+.ui.selection.dropdown {
+  padding: 20px;
+}
+
+.ui.selection.dropdown > .dropdown.icon {
+  top: calc(50% - 10px);
+}
+
+.ui.selection.dropdown .menu > .item {
+  display: flex;
+  align-items: center;
+}
+
+.ui.dropdown .menu > .item > .image,
+.ui.dropdown .menu > .item > img {
+  width: 60px;
+  height: 60px;
+  max-height: 60px;
+}
