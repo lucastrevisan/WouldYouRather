@@ -19,6 +19,7 @@ class DashBoard extends Component {
   render() {
     const { unansweredQuestions, answeredQuestions } = this.props;
     const { active } = this.state;
+
     return (
       <div className="dashboard-content">
         <ul className="tabs">
@@ -42,9 +43,9 @@ class DashBoard extends Component {
 
         {active === 'unanswered' && (
           <ul className="questions unanswered">
-            {unansweredQuestions.map(qid => (
-              <li key={qid}>
-                <Question id={qid} />
+            {unansweredQuestions.map(id => (
+              <li key={id}>
+                <Question id={id} />
               </li>
             ))}
           </ul>
@@ -52,9 +53,9 @@ class DashBoard extends Component {
 
         {active === 'answered' && (
           <ul className="questions answered">
-            {answeredQuestions.map(qid => (
-              <li key={qid}>
-                <Question id={qid} />
+            {answeredQuestions.map(id => (
+              <li key={id}>
+                <Question id={id} />
               </li>
             ))}
           </ul>
@@ -76,7 +77,7 @@ function mapStateToProps({ questions, users, authedUser }) {
   );
   return {
     unansweredQuestions: Object.keys(questions)
-      .filter(qid => !answeredQuestions.includes(qid))
+      .filter(id => !answeredQuestions.includes(id))
       .sort((a, b) => questions[b].timestamp - questions[a].timestamp),
     answeredQuestions
   };

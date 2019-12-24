@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import { handleInitialData } from '../actions/shared';
 import Routes from './Routes';
-import NavBar from './NavBar';
+import Nav from './Nav';
 
 class App extends Component {
   componentDidMount() {
@@ -17,7 +17,7 @@ class App extends Component {
     return (
       <Router>
         <div className={isLogged ? 'main-container' : 'login-container'}>
-          {isLogged && <NavBar />}
+          {isLogged && <Nav />}
           <Routes isLogged={isLogged} />
         </div>
       </Router>

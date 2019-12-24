@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import User from './User';
 
-class NavBar extends Component {
+class Nav extends Component {
   state = {
     isOpen: false
   };
@@ -27,7 +27,7 @@ class NavBar extends Component {
           New Question
         </NavLink>
         <NavLink exact to="/leaderboard">
-          Dashboard
+          Leaderboard
         </NavLink>
         <User id={authedUser} />
         <NavLink exact to="/logout">
@@ -38,7 +38,7 @@ class NavBar extends Component {
   }
 }
 
-NavBar.propTypes = {
+Nav.propTypes = {
   authedUser: PropTypes.string
 };
 
@@ -48,4 +48,4 @@ function mapStateToProps({ authedUser }) {
   };
 }
 
-export default withRouter(connect(mapStateToProps, null)(NavBar));
+export default withRouter(connect(mapStateToProps, null)(Nav));

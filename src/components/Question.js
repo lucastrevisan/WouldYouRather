@@ -1,29 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, CardBody, CardTitle } from 'reactstrap';
-import {  withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-class Question extends React.Component {
-  constuctor() {
-    this.loadQuestionDetails = this.routeChange.bind(this);
-  }
-  loadQuestionDetails(e, questionId) {
-    let path = `/questions/`+questionId;
+class Question extends Component {
+  goToQuestion = (e, questionId) => {
+    let path = `/questions/` + questionId;
     this.props.history.push(path);
-  }
+  };
+
   render() {
-    const {question, auth} = this.props;
+    const { question, auth, users } = this.props;
     return (
-      <Card onClick={(e) => this.loadQuestionDetails(e, question.id)}>
-        <CardBody>
-          <CardTitle>Would You Rather</CardTitle>
+      <div
+        className="questionCard"
+        onClick={e => this.goToQuestion(e, question.id)}
+      >
+        <p>{users[question.author].name} ask:</p>
+        <div className="avatarQuestion">
+          <img src={users[question.author].avatarURL} alt="avatar" />
           <ul>
-            <li className={question.optionOne.votes.includes(auth) ? "optionSelected" : ""}>{question.optionOne.text}</li>
-            <li className={question.optionTwo.votes.includes(auth) ? "optionSelected" : ""}>{question.optionTwo.text}</li>
+            <p>Would You Rather...</p>
+            <li
+              className={
+                question.optionOne.votes.includes(auth) ? 'optionSelected' : ''
+              }
+            >
+              {question.optionOne.text}
+            </li>
+            <li
+              className={
+                question.optionTwo.votes.includes(auth) ? 'optionSelected' : ''
+              }
+            >
+              {question.optionTwo.text}
+            </li>
           </ul>
-        </CardBody>
-      </Card>
+        </div>
+      </div>
     );
   }
 }
@@ -33,11 +47,12 @@ Question.propTypes = {
   history: PropTypes.object.isRequired
 };
 
-function mapStateToProps (state, { id }) {
+function mapStateToProps(state, { id }) {
   return {
-    question : state.questions[id],
-    auth: state.authedUser
-  }
+    question: state.questions[id],
+    auth: state.authedUser,
+    users: state.users
+  };
 }
 
-export default withRouter(connect(mapStateToProps, null)(Question))
+export default withRouter(connect(mapStateToProps, null)(Question));

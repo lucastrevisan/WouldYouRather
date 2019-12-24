@@ -1,18 +1,14 @@
-import React from "react"
-import PropTypes from "prop-types"
-import {Button, Card, CardBody, CardHeader} from 'reactstrap';
-import CardTitle from "reactstrap/es/CardTitle";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const NotFound = ({ history }) => (
-  <Card>
-    <CardHeader>404</CardHeader>
-    <CardBody>
-      <CardTitle>Page Not Found</CardTitle>
-      <Button size="small" color="primary" onClick={() => history.push("/")}>
-        Go Home
-      </Button>
-    </CardBody>
-  </Card>
+  <div>
+    <h1>404</h1>
+    <p>Page Not Found</p>
+    <button size="small" color="primary" onClick={() => history.push('/')}>
+      Go Home
+    </button>
+  </div>
 );
 
 NotFound.propTypes = {
@@ -21,4 +17,4 @@ NotFound.propTypes = {
   }).isRequired
 };
 
-export default NotFound
+export default NotFound;
